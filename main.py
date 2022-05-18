@@ -9,10 +9,13 @@ from threading import Thread
 import random
 import time
 
+##Add your http proxy to this variable
+http_proxy_url = ""
+
 ip_addresses = []
 
 def proxy_generator():
-    response = requests.get("https://api.proxyscrape.com/?request=getproxies&proxytype=http&country=all&timeout=10000&ssl=yes&anonymity=all")
+    response = requests.get(http_proxy_url)
     for line in response.text.splitlines():
         ip_addresses.append(line)
     time.sleep(50)
